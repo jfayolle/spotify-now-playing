@@ -211,11 +211,11 @@ static NSString * const SNPFirstLoginKey = @"SNPFirstLogin";
             self.trackID = [[aNotification userInfo] objectForKey:@"Track ID"];
             [self setImage];
             self.currentSongName = [[aNotification userInfo] objectForKey:@"Name"];
-            [self updateTitle];
             self.songMenuItem.title = self.currentSongName;
             self.artistMenuItem.title = [[aNotification userInfo] objectForKey:@"Artist"];
             self.albumMenuItem.title = [[aNotification userInfo] objectForKey:@"Album"];
             self.statusItem.button.toolTip = [NSString stringWithFormat:@"%@\n%@\n%@",self.currentSongName,self.artistMenuItem.title,self.albumMenuItem.title];
+            [self updateTitle];
             [self showNotification];
         } else {
             [self updateTitle];
@@ -345,7 +345,7 @@ static NSString * const SNPFirstLoginKey = @"SNPFirstLogin";
             break;
         }
     }
-    return nameText;
+    return [NSString stringWithFormat:@"%@ - %@", [NSString stringWithString:self.artistMenuItem.title], nameText];
 }
 
 - (void)launchSpotify
